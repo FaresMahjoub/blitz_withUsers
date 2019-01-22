@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {cardClick} from '../redux/cards/cardsActions'
+import {cardClick} from '../../redux/cards/cardsActions'
 import {connect} from "react-redux";
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles'
@@ -40,6 +40,7 @@ function CardContainer({
     playerNumber,
     classes,
     pause,
+    notLoggedIn,
 
 }) {
     const verticalMargin=10 + 40 * Math.random();
@@ -75,7 +76,7 @@ function CardContainer({
                 variant="contained"
                 classes={buttonClasses}
                 onClick={whenClicked}
-                disabled={!pubPile || pause}
+                disabled={!pubPile || pause || notLoggedIn}
             >
                 <h2 className={textClassName}>
                     {sex === 'M' && <MaleIcon/>}
@@ -86,45 +87,6 @@ function CardContainer({
                 {!numb && numb}
 
             </Button>
-            {/*{color==='blue' ?*/}
-                {/*<Button*/}
-                    {/*variant="contained"*/}
-                    {/*classes={{root: classes.buttonBlue, disabled: classes.buttonBlue}}*/}
-                    {/*onClick={whenClicked}*/}
-                    {/*disabled={!pubPile}*/}
-                {/*>*/}
-                    {/*<h2 className={classes.textWhite}>*/}
-                        {/*<MaleIcon/> {numb}*/}
-                    {/*</h2>*/}
-
-                {/*</Button>*/}
-
-                {/*: color==='red' ?*/}
-                     {/*<Button*/}
-                         {/*variant="contained"*/}
-                         {/*classes={{root: classes.buttonRed, disabled: classes.buttonRed}}*/}
-                         {/*onClick={whenClicked}*/}
-                         {/*disabled={!pubPile}*/}
-                     {/*>*/}
-                         {/*<h2>*/}
-                             {/*<MaleIcon/> {numb}*/}
-                         {/*</h2>*/}
-                     {/*</Button>*/}
-                    {/*: color==='yellow' ?*/}
-                        {/*<Button/}
-                                {/*classes={{root: classes.buttonYellow, disabled: classes.buttonYellow}}*/}
-                                {/*variant="contained"*/}
-                                {/*onClick={whenClicked}*/}
-                                {/*disabled={!pubPile}*/}
-                        {/*>  <h2 className={classes.textBlack}> <FemaleIcon/> {numb}</h2> </Button> :*/}
-                         {/*color === 'green' ?*/}
-                             {/*<Button //style={{backgroundColor:'green',}}*/}
-                                     {/*variant="contained"*/}
-                                     {/*classes={{root: classes.buttonGreen, disabled: classes.buttonGreen}}*/}
-                                     {/*onClick={whenClicked}*/}
-                                     {/*disabled={!pubPile} >  <h2> <FemaleIcon/> {numb}</h2> </Button> :*/}
-                             {/*<Button variant="contained" onClick={whenClicked} disabled={!pubPile} >  {numb} </Button>*/}
-            {/*}*/}
         </div>
     )
 }

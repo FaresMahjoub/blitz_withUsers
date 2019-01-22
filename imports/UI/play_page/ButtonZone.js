@@ -1,21 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {initialise, setCards} from "../redux/cards/cardsActions";
-import {playPause} from "../redux/playing";
-import { withStyles } from '@material-ui/core/styles';
+import {initialise, setCards} from "../../redux/cards/cardsActions";
+import {playPause} from "../../redux/playing";
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
-import {selectPlaying} from "../redux/playing";
+import {selectPlaying} from "../../redux/playing";
+import {withStyles} from "@material-ui/core/styles";
 
 
+const styles={
+    drawerPaper: {
+        position: "relative",
+    }
+}
 function ButtonZone({
    gridStyle,
    onResetClick,
    onGiveCardsClick,
    onPause,
    playing,
+   notLoggedIn,
+   classes,
 }){
+    const drawerClasses = {
+        paper: classes.drawerPaper,
+    };
     const buttonZoneStyle={
         display:"flex",
         flexDirection:"column",
@@ -25,14 +35,15 @@ function ButtonZone({
     return(
         <Drawer
             style={gridStyle}
+            classes={drawerClasses}
             anchor='left'
             open={true}
             variant='persistent'
         >
             <div style={buttonZoneStyle}>
-                <Button variant="contained" onClick={onResetClick}>Reset</Button>
-                <Button variant="contained" onClick={onGiveCardsClick}>Give cards</Button>
-                <Button variant="contained" onClick={onPause}> {playing ? 'Pause' : 'Play'}</Button>
+                <Button variant="contained" disabled={notLoggedIn} onClick={onResetClick}>Reset</Button>
+                <Button variant="contained" disabled={notLoggedIn} onClick={onGiveCardsClick}>Give cards</Button>
+                <Button variant="contained" disabled={notLoggedIn} onClick={onPause}> {playing ? 'Pause' : 'Play'}</Button>
             </div>
         </Drawer>
 
@@ -43,7 +54,7 @@ function ButtonZone({
 ButtonZone.porpTypes={
     gridStyle: PropTypes.object.isRequired,
 }
-
+ButtonZone = withStyles(styles)(ButtonZone)
 const mapDispatchToProps = dispatch => ({
     onResetClick: () => dispatch(initialise()),
     onGiveCardsClick: () => dispatch(setCards()),
@@ -57,5 +68,6 @@ const mapStateToProps = (state, ownProps) =>{
 }
 
 ButtonZone = connect(mapStateToProps, mapDispatchToProps)(ButtonZone);
+
 
 export default ButtonZone;

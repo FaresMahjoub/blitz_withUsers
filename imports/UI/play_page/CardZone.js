@@ -16,6 +16,7 @@ function CardZone({
     upperCards,
     playerNumber,
     pause,
+    notLoggedIn,
 }){
     let a=JSON.parse(JSON.stringify(upperCards))
     a[0].pos='rem'
@@ -36,6 +37,7 @@ function CardZone({
                         numb={card.numb}
                         pos={card.pos}
                         playerNumber={playerNumber}
+                        notLoggedIn={notLoggedIn}
                     />
                 ))}
                 {/*<CardContainer pubPile={pub} color={upperCards[0].color} sex={upperCards[0].sex} numb={upperCards[0].numb} />*/}

@@ -2,8 +2,8 @@ import React from 'react';
 import CardContainer from "./CardContainer";
 import {connect} from "react-redux";
 import Paper from '@material-ui/core/Paper';
-import {selectCardsInMiddle} from "../redux/cards/cardsSelectors"
-import {selectPlaying} from "../redux/playing";
+import {selectCardsInMiddle} from "../../redux/cards/cardsSelectors"
+import {selectPlaying} from "../../redux/playing";
 
 
 const boardZoneStyle={

@@ -24,7 +24,7 @@ class NameZone extends React.Component{
             <div style={{display: "flex", justifyContent:"space-Evenly"}}>
                 {this.props.bot ? <Chip label={this.props.name}/>:
                             <TextField label="Name" value={this.state.name} onChange={this.handleChange}/> }
-                {this.props.bot && <button type="button" /*onClick={}*/ > Change Opponent </button>}
+                {this.props.bot && <button type="button" disabled={this.props.notLoggedIn}/*onClick={}*/ > Change Opponent </button>}
             </div>
         )
     }

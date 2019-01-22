@@ -3,15 +3,15 @@ import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 import store from "../imports/redux/store";
 import * as serviceWorker from '../imports/serviceWorker';
-import App2 from '../imports/App2.js';
+import PlayPage from '../imports/PlayPage.js';
 import {Provider} from "react-redux";
-//import '../imports/startup/accounts-config.js';
+import '../imports/startup/accounts-config.js';
 
 
 Meteor.startup(() => {
   ReactDOM.render(
       <Provider store={store}>
-      <App2 />
+      <PlayPage />
       </Provider>,
       document.getElementById('root')
 

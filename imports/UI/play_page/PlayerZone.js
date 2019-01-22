@@ -4,8 +4,11 @@ import NameZone from "./NameZone";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import Paper from '@material-ui/core/Paper';
-import {selectPlayerCards} from '../redux/cards/cardsSelectors.js'
-import {selectPlaying} from '../redux/playing'
+import {selectPlayerCards} from '../../redux/cards/cardsSelectors.js'
+import {selectPlaying} from '../../redux/playing'
+import AccountsUIWrapper from "./AccountsUIWrapper";
+import '../../startup/accounts-config.js';
+
 
 
 const playerZoneStyle={
@@ -21,22 +24,26 @@ function PlayerZone({
     bot,
     upperPlayerCards,
     playerNumber,
-    pause
+    pause,
+    notLoggedIn,
 }) {
         return (
             <div style={gridStyle}>
                 <Paper style={playerZoneStyle}>
-					{/* todo correct indentation here */}
-					<NameZone name={name}
-                              bot={bot}
-                              style={{
-                                  gridRow: "1 / 2",
-                                  gridColumn: "1 / 2",
-                              }}
-                              />
+                    {!bot ? <AccountsUIWrapper/>
+                        : <NameZone name={name}
+                                    bot={bot}
+                                    notLoggedIn={notLoggedIn}
+                                    style={{
+                                        gridRow: "1 / 2",
+                                        gridColumn: "1 / 2",
+                                    }}
+                        />
+                    }
                     <CardZone
                         pub={!bot}
                         pause={pause}
+                        notLoggedIn={notLoggedIn}
                         pileNumb={5}
                         playerNumber={playerNumber}
                         upperCards={upperPlayerCards}
